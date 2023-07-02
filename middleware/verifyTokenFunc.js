@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const secret = "RANDOM_TOKEN_SECRET";
+const tokenSecret = require("../utils/secretToken");
 
 //********** middleware pour vérifier la validité du token de l'utilisateur **********
 
@@ -14,7 +14,7 @@ module.exports = (req, res, next) => {
   }
 
   try {
-    const decoded = jwt.verify(token, secret);
+    const decoded = jwt.verify(token, tokenSecret);
     req.user = decoded;
     req.token = token;
 
