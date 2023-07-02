@@ -1,6 +1,5 @@
 const Admin = require("../models/Admin");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 
 exports.signup = (req, res, next) => {
 	bcrypt
@@ -25,5 +24,3 @@ exports.signup = (req, res, next) => {
 		})
 		.catch((err) => res.status(500).json({ err }));
 };
-
-//********** il faut hash les token pour plus de sécurité **********

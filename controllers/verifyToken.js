@@ -1,5 +1,4 @@
 const express = require("express");
-const jwt = require("jsonwebtoken");
 
 //********** fonction qui permet d'envoyer le token, l'id, et son status de connexion à l'utilisateur **********
 

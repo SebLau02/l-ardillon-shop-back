@@ -2,6 +2,7 @@ const User = require("../models/User");
 const Admin = require("../models/Admin");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const tokenSecret = require("../utils/secretToken");
 
 exports.signup = (req, res, next) => {
 	bcrypt
@@ -64,7 +65,7 @@ exports.login = (req, res, next) => {
 								role: user.role,
 								token: jwt.sign(
 									{ id: user._id, role: user.role },
-									"RANDOM_TOKEN_SECRET",
+									tokenSecret,
 									{ expiresIn: "24h" }
 								),
 							});
@@ -95,7 +96,7 @@ exports.login = (req, res, next) => {
 										id: admin._id,
 										role: admin.role,
 									},
-									"RANDOM_TOKEN_SECRET",
+									tokenSecret,
 									{ expiresIn: "24h" }
 								),
 							});
