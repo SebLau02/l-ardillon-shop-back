@@ -20,6 +20,6 @@ module.exports = (req, res, next) => {
 
     next();
   } catch (err) {
-    return res.status(401).send(false);
+    return res.status(400).json({ err, message: "Non autorisé" });
   }
 };
