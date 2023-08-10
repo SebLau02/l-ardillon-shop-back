@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
       : null;
 
   if (!token) {
-    return res.status(401).json({ err, message: "Non autorisé" });
+    return res.status(401).json({ message: "Non autorisé" });
   }
 
   try {
