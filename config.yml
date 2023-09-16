@@ -1,0 +1,2 @@
+nom: l-ardillon-shop-server
+DB_PW: ${{ secrets.DB_PW }}
