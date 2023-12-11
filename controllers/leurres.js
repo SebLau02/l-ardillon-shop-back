@@ -18,7 +18,7 @@ exports.createLeurre = (req, res, next) => {
 			.then(() =>
 				res.status(201).json({
 					message: "Nouveau leurre souple ajouté avec succès",
-				})
+				}),
 			)
 			.catch((error) => res.status(400).json({ message: error.message }));
 	} else if (typeLeurre == "leurre-dur") {
@@ -30,7 +30,7 @@ exports.createLeurre = (req, res, next) => {
 			.then(() =>
 				res
 					.status(201)
-					.json({ message: "Nouveau leurre dur ajouté avec succès" })
+					.json({ message: "Nouveau leurre dur ajouté avec succès" }),
 			)
 			.catch((error) => res.status(400).json({ message: error.message }));
 	} else if (typeLeurre == "leurre-metallique") {
@@ -43,7 +43,7 @@ exports.createLeurre = (req, res, next) => {
 				res.status(201).json({
 					message: "Nouveau leurre metallique ajouté avec succès",
 					leurreMetallique,
-				})
+				}),
 			)
 			.catch((error) => res.status(400).json({ message: error.message }));
 	}
@@ -73,7 +73,7 @@ exports.getAllLeurre = (req, res, next) => {
 		if (typeLeurre == "leurre-souple") {
 			LeurreSouple.find()
 				.then((leurresSouples) =>
-					res.status(200).json({ leurresSouples })
+					res.status(200).json({ leurresSouples }),
 				)
 				.catch((error) => res.status(404).json({ error }));
 		} else if (typeLeurre == "leurre-dur") {
@@ -83,7 +83,7 @@ exports.getAllLeurre = (req, res, next) => {
 		} else if (typeLeurre == "leurre-metallique") {
 			LeurreMetallique.find()
 				.then((leurresMetalliques) =>
-					res.status(200).json({ leurresMetalliques })
+					res.status(200).json({ leurresMetalliques }),
 				)
 				.catch((error) => res.status(404).json({ error }));
 		}
@@ -113,16 +113,13 @@ exports.modifyOneLeurre = (req, res, next) => {
 
 	Promise.all([
 		LeurreSouple.updateOne(
-			{ _id: req.params.leurreId },
-			{ ...req.body, _id: req.params.leurreId }
+			{ _id: leurreId },
+			{ ...req.body, _id: leurreId },
 		),
-		LeurreDur.updateOne(
-			{ _id: req.params.leurreId },
-			{ ...req.body, _id: req.params.leurreId }
-		),
+		LeurreDur.updateOne({ _id: leurreId }, { ...req.body, _id: leurreId }),
 		LeurreMetallique.updateOne(
-			{ _id: req.params.leurreId },
-			{ ...req.body, _id: req.params.leurreId }
+			{ _id: leurreId },
+			{ ...req.body, _id: leurreId },
 		),
 	])
 		.then((result) => {
@@ -142,17 +139,17 @@ exports.addColorToLeurre = (req, res, next) => {
 		LeurreSouple.findOneAndUpdate(
 			{ _id: leurreId },
 			{ $push: { colors: { colorName, image, price, inStock } } },
-			{ new: true }
+			{ new: true },
 		),
 		LeurreDur.findOneAndUpdate(
 			{ _id: leurreId },
 			{ $push: { colors: { colorName, image, price, inStock } } },
-			{ new: true }
+			{ new: true },
 		),
 		LeurreMetallique.findOneAndUpdate(
 			{ _id: leurreId },
 			{ $push: { colors: { colorName, image, price, inStock } } },
-			{ new: true }
+			{ new: true },
 		),
 	])
 		.then((updatedLeurre) => {
@@ -175,7 +172,7 @@ exports.deleteOneLeurre = (req, res, next) => {
 		LeurreMetallique.deleteOne({ _id: req.params.leurreId }),
 	])
 		.then((result) => {
-			res.json({ result, message: "leurre supprimé" });
+			res.json({ result, message: "Leurre supprimé" });
 		})
 		.catch((err) => {
 			console.error(err);
@@ -184,24 +181,24 @@ exports.deleteOneLeurre = (req, res, next) => {
 };
 
 exports.deleteOneLureRef = (req, res, next) => {
-	const lureId = req.body.lureId;
-	const colorId = req.body.colorId;
+	const { lureId } = req.params;
+	const { colorId } = req.params;
 
 	Promise.all([
 		LeurreSouple.findOneAndUpdate(
 			{ _id: lureId },
 			{ $pull: { colors: { _id: colorId } } },
-			{ new: true }
+			{ new: true },
 		),
 		LeurreDur.findOneAndUpdate(
 			{ _id: lureId },
 			{ $pull: { colors: { _id: colorId } } },
-			{ new: true }
+			{ new: true },
 		),
 		LeurreMetallique.findOneAndUpdate(
 			{ _id: lureId },
 			{ $pull: { colors: { _id: colorId } } },
-			{ new: true }
+			{ new: true },
 		),
 	])
 		.then((result) => {
@@ -222,7 +219,7 @@ exports.deleteAllLeurre = (req, res, next) => {
 		LeurreMetallique.deleteMany(),
 	])
 		.then((result) => {
-			res.json({ result, message: "Collections supprimé supprimé" });
+			res.json({ result, message: "Collection supprimé supprimé" });
 		})
 		.catch((err) => {
 			console.error(err);
@@ -244,7 +241,7 @@ exports.stockManagement = (req, res, next) => {
 					"colors.$.inStock": newStock,
 				},
 			},
-			{ new: true }
+			{ new: true },
 		),
 		LeurreDur.findOneAndUpdate(
 			{ _id: leurreId, "colors._id": colorId },
@@ -254,7 +251,7 @@ exports.stockManagement = (req, res, next) => {
 					"colors.$.inStock": newStock,
 				},
 			},
-			{ new: true }
+			{ new: true },
 		),
 		LeurreMetallique.findOneAndUpdate(
 			{ _id: leurreId, "colors._id": colorId },
@@ -264,7 +261,7 @@ exports.stockManagement = (req, res, next) => {
 					"colors.$.inStock": newStock,
 				},
 			},
-			{ new: true }
+			{ new: true },
 		),
 	])
 		.then((result) => {

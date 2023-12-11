@@ -23,9 +23,9 @@ router.put("/stock-management", admin, leurresCtrl.stockManagement);
 router.delete("/delete", admin, leurresCtrl.deleteAllLeurre);
 router.delete("/delete/:leurreId", admin, leurresCtrl.deleteOneLeurre);
 router.delete(
-	"/delete/delete-ref-declination",
+	"/delete/delete-ref-declination/:lureId/:colorId",
 	admin,
-	leurresCtrl.deleteOneLureRef
+	leurresCtrl.deleteOneLureRef,
 );
 
 module.exports = router;
