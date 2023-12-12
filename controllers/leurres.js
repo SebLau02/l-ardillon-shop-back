@@ -108,22 +108,119 @@ exports.getAllLeurre = (req, res, next) => {
 	}
 };
 
-exports.modifyOneLeurre = (req, res, next) => {
-	const leurreId = req.params.leurreId;
+exports.modifyOneRefDecline = (req, res, next) => {
+	const { leurreId } = req.params;
+	const { _id, colorName, image, price, inStock } = req.body;
 
 	Promise.all([
-		LeurreSouple.updateOne(
-			{ _id: leurreId },
-			{ ...req.body, _id: leurreId },
+		LeurreSouple.findOneAndUpdate(
+			{ _id: leurreId, "colors._id": _id },
+			{
+				$set: {
+					"colors.$.price": price,
+					"colors.$.inStock": inStock,
+					"colors.$.image": image,
+					"colors.$.colorName": colorName,
+				},
+			},
+			{ new: true },
 		),
-		LeurreDur.updateOne({ _id: leurreId }, { ...req.body, _id: leurreId }),
-		LeurreMetallique.updateOne(
-			{ _id: leurreId },
-			{ ...req.body, _id: leurreId },
+		LeurreDur.findOneAndUpdate(
+			{ _id: leurreId, "colors._id": _id },
+			{
+				$set: {
+					"colors.$.price": price,
+					"colors.$.inStock": inStock,
+					"colors.$.image": image,
+					"colors.$.colorName": colorName,
+				},
+			},
+			{ new: true },
+		),
+		LeurreMetallique.findOneAndUpdate(
+			{ _id: leurreId, "colors._id": _id },
+			{
+				$set: {
+					"colors.$.price": price,
+					"colors.$.inStock": inStock,
+					"colors.$.image": image,
+					"colors.$.colorName": colorName,
+				},
+			},
+			{ new: true },
 		),
 	])
 		.then((result) => {
-			res.json(result);
+			res.json({ message: "Référence modifié" });
+		})
+		.catch((err) => {
+			console.error(err);
+			res.status(500).send(err);
+		});
+};
+
+exports.modifyOneRef = (req, res, next) => {
+	const { leurreId } = req.params;
+	const {
+		name,
+		marque,
+		description,
+		category,
+		size,
+		famille,
+		weight,
+		swimDepth,
+	} = req.body;
+
+	Promise.all([
+		LeurreSouple.findOneAndUpdate(
+			{ _id: leurreId },
+			{
+				$set: {
+					name,
+					marque,
+					description,
+					category,
+					size,
+					famille,
+				},
+			},
+			{ new: true },
+		),
+		LeurreDur.findOneAndUpdate(
+			{ _id: leurreId },
+			{
+				$set: {
+					name,
+					marque,
+					description,
+					category,
+					size,
+					famille,
+					weight,
+					swimDepth,
+				},
+			},
+			{ new: true },
+		),
+		LeurreMetallique.findOneAndUpdate(
+			{ _id: leurreId },
+			{
+				$set: {
+					name,
+					marque,
+					description,
+					category,
+					size,
+					famille,
+					weight,
+				},
+			},
+			{ new: true },
+		),
+	])
+		.then((result) => {
+			res.json({ message: "Référence modifié" });
 		})
 		.catch((err) => {
 			console.error(err);
@@ -155,10 +252,11 @@ exports.addColorToLeurre = (req, res, next) => {
 		.then((updatedLeurre) => {
 			res.status(200).json({
 				message: "Déclinaison ajouté avec succès",
+				updatedLeurre,
 			});
 		})
 		.catch((err) => {
-			console.error(err);
+			console.error({ err, message: "Erreur" });
 			res.status(500).send(err);
 		});
 };

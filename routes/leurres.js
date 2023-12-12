@@ -17,7 +17,16 @@ router.get("/:leurreId", leurresCtrl.getOneLeurre);
 router.post("/", admin, leurresCtrl.createLeurre);
 router.post("/:leurreId", admin, leurresCtrl.addColorToLeurre);
 
-router.put("/modify-lure/:leurreId", admin, leurresCtrl.modifyOneLeurre);
+router.put(
+	"/modify-lure/edit-one-ref-declination/:leurreId",
+	admin,
+	leurresCtrl.modifyOneRefDecline,
+);
+router.put(
+	"/modify-lure/edit-one-ref/:leurreId",
+	admin,
+	leurresCtrl.modifyOneRef,
+);
 router.put("/stock-management", admin, leurresCtrl.stockManagement);
 
 router.delete("/delete", admin, leurresCtrl.deleteAllLeurre);
