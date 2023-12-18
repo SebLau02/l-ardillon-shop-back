@@ -5,6 +5,7 @@
 ### Description
 
 Ce repo est le code source du serveur pour le site [l'ardillon-shop](https://seblau02.github.io/l-ardillon-shop/).
+La documentation complète est [ici](https://github.com/SebLau02/l-ardillon-shop-back/blob/main/docs/Documentation.md) 
 
 ### Détails
 
