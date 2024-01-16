@@ -29,7 +29,7 @@ Le serveur a été réalisé avec node.js, express.js avec une base de donnée m
             - Modifier des produits
             - Supprimer des produits
 
-Je te laisse le découvrir [ici](https://l-ardillon-shop-back.vercel.app/)
+Je te laisse le découvrir [ici](https://l-ardillon-shop-back.vercel.app/api)
 
 ### Technologies: Node.js, Express, MongoDb
 
