@@ -12,6 +12,8 @@ Ce repo est le code source du serveur pour le site [l'ardillon-shop](https://seb
 
 La documentation complète est [ici](https://github.com/SebLau02/l-ardillon-shop-back/blob/main/docs/Documentation.md)
 
+L'url de base de l'API est [là](https://l-ardillon-shop-back.vercel.app/api)
+
 Le serveur a été réalisé avec node.js, express.js avec une base de donnée mongoDb. Il comporte toute les fonctions pour faire fonctionnner le site:
 
     - Côté client:
@@ -28,8 +30,6 @@ Le serveur a été réalisé avec node.js, express.js avec une base de donnée m
             - Ajouter des produits
             - Modifier des produits
             - Supprimer des produits
-
-Je te laisse le découvrir [ici](https://l-ardillon-shop-back.vercel.app/api)
 
 ### Technologies: Node.js, Express, MongoDb
 
