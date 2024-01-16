@@ -35,8 +35,8 @@ Le serveur a été réalisé avec node.js, express.js avec une base de donnée m
 
 ### Images
 
-<img src="./assets/illustration1" alt="résultats sous forme json" width="800">
-<img src="./assets/illustration2" alt="résultats sous forme json" width="800">
-<img src="./assets/illustration3" alt="résultats sous forme json" width="800">
+<img src="./assets/illustration1.png" alt="résultats sous forme json" width="800">
+<img src="./assets/illustration2.png" alt="résultats sous forme json" width="800">
+<img src="./assets/illustration3.png" alt="résultats sous forme json" width="800">
 
 #### [Documentation](https://github.com/SebLau02/l-ardillon-shop-back/blob/main/docs/Documentation.md)
