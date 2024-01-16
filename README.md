@@ -4,10 +4,13 @@
 
 ### Description
 
-Ce repo est le code source du serveur pour le site [l'ardillon-shop](https://seblau02.github.io/l-ardillon-shop/).
-La documentation complète est [ici](https://github.com/SebLau02/l-ardillon-shop-back/blob/main/docs/Documentation.md) 
+Serveur / API de l'ardillon-shop.
 
 ### Détails
+
+Ce repo est le code source du serveur pour le site [l'ardillon-shop](https://seblau02.github.io/l-ardillon-shop/).
+
+La documentation complète est [ici](https://github.com/SebLau02/l-ardillon-shop-back/blob/main/docs/Documentation.md)
 
 Le serveur a été réalisé avec node.js, express.js avec une base de donnée mongoDb. Il comporte toute les fonctions pour faire fonctionnner le site:
 
